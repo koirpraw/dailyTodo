@@ -66,41 +66,24 @@ class _TodoHomeWidgetState extends State<TodoHomeWidget> {
           child: Builder(
             builder: (context) {
               final todoList = FFAppState().taskName?.toList() ?? [];
-              return InkWell(
-                onTap: () async {
-                  await showModalBottomSheet(
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) {
-                      return Padding(
-                        padding: MediaQuery.of(context).viewInsets,
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * 0.5,
-                          child: BottomSheetWidget(),
-                        ),
-                      );
-                    },
+              return ListView.builder(
+                padding: EdgeInsets.zero,
+                scrollDirection: Axis.vertical,
+                itemCount: todoList.length,
+                itemBuilder: (context, todoListIndex) {
+                  final todoListItem = todoList[todoListIndex];
+                  return Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                    child: ListTile(
+                      title: Text(
+                        'Lorem ipsum dolor...',
+                        style: FlutterFlowTheme.title3,
+                      ),
+                      tileColor: Color(0xFFF5F5F5),
+                      dense: false,
+                    ),
                   );
                 },
-                child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  scrollDirection: Axis.vertical,
-                  itemCount: todoList.length,
-                  itemBuilder: (context, todoListIndex) {
-                    final todoListItem = todoList[todoListIndex];
-                    return Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-                      child: ListTile(
-                        title: Text(
-                          'Lorem ipsum dolor...',
-                          style: FlutterFlowTheme.title3,
-                        ),
-                        tileColor: Color(0xFFF5F5F5),
-                        dense: false,
-                      ),
-                    );
-                  },
-                ),
               );
             },
           ),
