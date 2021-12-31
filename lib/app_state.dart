@@ -19,6 +19,8 @@ class FFAppState {
   SharedPreferences prefs;
 
   List<String> todoList = [];
+
+  List<bool> isCheckedList = [];
 }
 
 LatLng _latLngFromString(String val) {

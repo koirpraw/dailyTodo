@@ -2,6 +2,7 @@ import '../addtask_page/addtask_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TodoHomeWidget extends StatefulWidget {
@@ -62,11 +63,22 @@ class _TodoHomeWidgetState extends State<TodoHomeWidget> {
                 itemCount: todoList.length,
                 itemBuilder: (context, todoListIndex) {
                   final todoListItem = todoList[todoListIndex];
-                  return Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                  return Slidable(
+                    actionPane: const SlidableScrollActionPane(),
+                    secondaryActions: [
+                      IconSlideAction(
+                        caption: 'delete',
+                        color: Colors.blue,
+                        icon: Icons.delete,
+                        onTap: () async {
+                          setState(
+                              () => FFAppState().todoList.remove(todoListItem));
+                        },
+                      ),
+                    ],
                     child: ListTile(
                       title: Text(
-                        todoListItem,
+                        'Lorem ipsum dolor...',
                         style: FlutterFlowTheme.title3,
                       ),
                       tileColor: Color(0xFFF5F5F5),
