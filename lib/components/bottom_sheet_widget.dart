@@ -68,7 +68,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                         controller: textController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'buy some eggs..',
+                          hintText: 'todo tasks here..',
                           hintStyle: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Poppins',
                             fontSize: 12,
@@ -93,6 +93,8 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                               topRight: Radius.circular(4.0),
                             ),
                           ),
+                          contentPadding:
+                              EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                         ),
                         style: FlutterFlowTheme.subtitle2.override(
                           fontFamily: 'Poppins',

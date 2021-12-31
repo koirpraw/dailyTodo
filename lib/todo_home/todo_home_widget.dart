@@ -1,4 +1,4 @@
-import '../components/bottom_sheet_widget.dart';
+import '../addtask_page/addtask_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -35,22 +35,12 @@ class _TodoHomeWidgetState extends State<TodoHomeWidget> {
       backgroundColor: Color(0xFFF5F5F5),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await showModalBottomSheet(
-            isScrollControlled: true,
-            context: context,
-            builder: (context) {
-              return Padding(
-                padding: MediaQuery.of(context).viewInsets,
-                child: Container(
-                  height: 40,
-                  child: BottomSheetWidget(),
-                ),
-              );
-            },
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddtaskPageWidget(),
+            ),
           );
-          setState(() => FFAppState()
-              .taskName
-              .add(FFAppState().taskName.length.toString()));
         },
         backgroundColor: FlutterFlowTheme.primaryColor,
         elevation: 8,
@@ -65,7 +55,7 @@ class _TodoHomeWidgetState extends State<TodoHomeWidget> {
           padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
           child: Builder(
             builder: (context) {
-              final todoList = FFAppState().taskName?.toList() ?? [];
+              final todoList = FFAppState().todoList?.toList() ?? [];
               return ListView.builder(
                 padding: EdgeInsets.zero,
                 scrollDirection: Axis.vertical,
@@ -76,7 +66,7 @@ class _TodoHomeWidgetState extends State<TodoHomeWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                     child: ListTile(
                       title: Text(
-                        'Lorem ipsum dolor...',
+                        todoListItem,
                         style: FlutterFlowTheme.title3,
                       ),
                       tileColor: Color(0xFFF5F5F5),

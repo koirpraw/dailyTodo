@@ -18,7 +18,7 @@ class FFAppState {
 
   SharedPreferences prefs;
 
-  List<String> taskName = [];
+  List<String> todoList = [];
 }
 
 LatLng _latLngFromString(String val) {
