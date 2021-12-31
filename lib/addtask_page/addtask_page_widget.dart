@@ -1,6 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../todo_home/todo_home_widget.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -47,7 +47,7 @@ class _AddtaskPageWidgetState extends State<AddtaskPageWidget> {
           await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => TodoHomeWidget(),
+              builder: (context) => NavBarPage(initialPage: 'todoLocal'),
             ),
           );
         },

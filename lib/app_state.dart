@@ -14,6 +14,7 @@ class FFAppState {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
+    _persistedTodo = prefs.getStringList('ff_persistedTodo') ?? [];
   }
 
   SharedPreferences prefs;
@@ -21,6 +22,23 @@ class FFAppState {
   List<String> todoList = [];
 
   List<bool> isCheckedList = [];
+
+  List<String> _persistedTodo = [];
+  List<String> get persistedTodo => _persistedTodo;
+  set persistedTodo(List<String> _value) {
+    _persistedTodo = _value;
+    prefs.setStringList('ff_persistedTodo', _value);
+  }
+
+  void addToPersistedTodo(String _value) {
+    _persistedTodo.add(_value);
+    prefs.setStringList('ff_persistedTodo', _persistedTodo);
+  }
+
+  void removeFromPersistedTodo(String _value) {
+    _persistedTodo.remove(_value);
+    prefs.setStringList('ff_persistedTodo', _persistedTodo);
+  }
 }
 
 LatLng _latLngFromString(String val) {

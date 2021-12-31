@@ -4,7 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login_page/login_page_widget.dart';
-import '../todo_home/todo_home_widget.dart';
+import '../main.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -345,7 +345,8 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => TodoHomeWidget(),
+                          builder: (context) =>
+                              NavBarPage(initialPage: 'todoLocal'),
                         ),
                       );
                     },
@@ -425,7 +426,8 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => TodoHomeWidget(),
+                                    builder: (context) =>
+                                        NavBarPage(initialPage: 'todoLocal'),
                                   ),
                                   (r) => false,
                                 );

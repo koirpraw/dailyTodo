@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TodoHomeWidget extends StatefulWidget {
-  const TodoHomeWidget({Key key}) : super(key: key);
+class TodoPersistedWidget extends StatefulWidget {
+  const TodoPersistedWidget({Key key}) : super(key: key);
 
   @override
-  _TodoHomeWidgetState createState() => _TodoHomeWidgetState();
+  _TodoPersistedWidgetState createState() => _TodoPersistedWidgetState();
 }
 
-class _TodoHomeWidgetState extends State<TodoHomeWidget> {
+class _TodoPersistedWidgetState extends State<TodoPersistedWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -23,7 +23,7 @@ class _TodoHomeWidgetState extends State<TodoHomeWidget> {
         backgroundColor: FlutterFlowTheme.primaryColor,
         automaticallyImplyLeading: false,
         title: Text(
-          'Todo: Task manager',
+          'Todo: Persisted',
           style: FlutterFlowTheme.bodyText1.override(
             fontFamily: 'Poppins',
             color: FlutterFlowTheme.tertiaryColor,
@@ -56,13 +56,15 @@ class _TodoHomeWidgetState extends State<TodoHomeWidget> {
           padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
           child: Builder(
             builder: (context) {
-              final todoList = FFAppState().todoList?.toList() ?? [];
+              final persistedTodoList =
+                  FFAppState().persistedTodo?.toList() ?? [];
               return ListView.builder(
                 padding: EdgeInsets.zero,
                 scrollDirection: Axis.vertical,
-                itemCount: todoList.length,
-                itemBuilder: (context, todoListIndex) {
-                  final todoListItem = todoList[todoListIndex];
+                itemCount: persistedTodoList.length,
+                itemBuilder: (context, persistedTodoListIndex) {
+                  final persistedTodoListItem =
+                      persistedTodoList[persistedTodoListIndex];
                   return Slidable(
                     actionPane: const SlidableScrollActionPane(),
                     secondaryActions: [
@@ -70,15 +72,14 @@ class _TodoHomeWidgetState extends State<TodoHomeWidget> {
                         caption: 'delete',
                         color: Colors.blue,
                         icon: Icons.delete,
-                        onTap: () async {
-                          setState(
-                              () => FFAppState().todoList.remove(todoListItem));
+                        onTap: () {
+                          print('SlidableActionWidget pressed ...');
                         },
                       ),
                     ],
                     child: ListTile(
                       title: Text(
-                        'Lorem ipsum dolor...',
+                        persistedTodoListItem,
                         style: FlutterFlowTheme.title3,
                       ),
                       tileColor: Color(0xFFF5F5F5),

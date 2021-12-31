@@ -7,8 +7,9 @@ import 'auth/auth_util.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:daily_to_do/landing_page/landing_page_widget.dart';
-import 'package:daily_to_do/todo_home/todo_home_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'todo_local/todo_local_widget.dart';
+import 'todo_persisted/todo_persisted_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,8 +68,67 @@ class _MyAppState extends State<MyApp> {
               ),
             )
           : currentUser.loggedIn
-              ? TodoHomeWidget()
+              ? NavBarPage()
               : LandingPageWidget(),
+    );
+  }
+}
+
+class NavBarPage extends StatefulWidget {
+  NavBarPage({Key key, this.initialPage}) : super(key: key);
+
+  final String initialPage;
+
+  @override
+  _NavBarPageState createState() => _NavBarPageState();
+}
+
+/// This is the private State class that goes with NavBarPage.
+class _NavBarPageState extends State<NavBarPage> {
+  String _currentPage = 'todoLocal';
+
+  @override
+  void initState() {
+    super.initState();
+    _currentPage = widget.initialPage ?? _currentPage;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tabs = {
+      'todoLocal': TodoLocalWidget(),
+      'todoPersisted': TodoPersistedWidget(),
+    };
+    return Scaffold(
+      body: tabs[_currentPage],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.filter_list_rounded,
+              size: 24,
+            ),
+            label: 'local',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.list_alt,
+              size: 24,
+            ),
+            label: 'persisted',
+            tooltip: '',
+          )
+        ],
+        backgroundColor: Colors.white,
+        currentIndex: tabs.keys.toList().indexOf(_currentPage),
+        selectedItemColor: FlutterFlowTheme.primaryColor,
+        unselectedItemColor: Color(0x8A000000),
+        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
+        showSelectedLabels: true,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+      ),
     );
   }
 }
