@@ -20,7 +20,7 @@ class _TodoHomeWidgetState extends State<TodoHomeWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: Text(
           'Todo: Task manager',
           style: FlutterFlowTheme.bodyText1.override(
