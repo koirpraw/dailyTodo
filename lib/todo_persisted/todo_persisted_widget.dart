@@ -1,4 +1,4 @@
-import '../addtask_page/addtask_page_widget.dart';
+import '../addpersistedtaskpage/addpersistedtaskpage_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -36,11 +36,12 @@ class _TodoPersistedWidgetState extends State<TodoPersistedWidget> {
       backgroundColor: Color(0xFFF5F5F5),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await Navigator.push(
+          await Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => AddtaskPageWidget(),
+              builder: (context) => AddpersistedtaskpageWidget(),
             ),
+            (r) => false,
           );
         },
         backgroundColor: FlutterFlowTheme.primaryColor,
