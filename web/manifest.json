@@ -1,6 +1,6 @@
 {
-    "name": "daily_to_do",
-    "short_name": "daily_to_do",
+    "name": "dailyToDo",
+    "short_name": "dailyToDo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
