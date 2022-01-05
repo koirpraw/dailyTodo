@@ -196,7 +196,7 @@ class _AddtaskfirestoreWidgetState extends State<AddtaskfirestoreWidget> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                NavBarPage(initialPage: 'todofirebase'),
+                                NavBarPage(initialPage: 'todoFireStore'),
                           ),
                           (r) => false,
                         );

@@ -10,7 +10,7 @@ import 'package:daily_to_do/landing_page/landing_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'todo_local/todo_local_widget.dart';
 import 'todo_persisted/todo_persisted_widget.dart';
-import 'todofirebase/todofirebase_widget.dart';
+import 'todo_fire_store/todo_fire_store_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -99,7 +99,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'todoLocal': TodoLocalWidget(),
       'todoPersisted': TodoPersistedWidget(),
-      'todofirebase': TodofirebaseWidget(),
+      'todoFireStore': TodoFireStoreWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],

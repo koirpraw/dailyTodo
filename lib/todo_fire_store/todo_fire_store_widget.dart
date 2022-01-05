@@ -1,19 +1,20 @@
 import '../addtaskfirestore/addtaskfirestore_widget.dart';
 import '../backend/backend.dart';
+import '../completed_tasks_firestore/completed_tasks_firestore_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TodofirebaseWidget extends StatefulWidget {
-  const TodofirebaseWidget({Key key}) : super(key: key);
+class TodoFireStoreWidget extends StatefulWidget {
+  const TodoFireStoreWidget({Key key}) : super(key: key);
 
   @override
-  _TodofirebaseWidgetState createState() => _TodofirebaseWidgetState();
+  _TodoFireStoreWidgetState createState() => _TodoFireStoreWidgetState();
 }
 
-class _TodofirebaseWidgetState extends State<TodofirebaseWidget> {
+class _TodoFireStoreWidgetState extends State<TodoFireStoreWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -52,40 +53,50 @@ class _TodofirebaseWidgetState extends State<TodofirebaseWidget> {
           size: 36,
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              StreamBuilder<List<MyTasksRecord>>(
-                stream: queryMyTasksRecord(
-                  queryBuilder: (myTasksRecord) =>
-                      myTasksRecord.orderBy('Time'),
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: CircularProgressIndicator(
-                          color: FlutterFlowTheme.primaryColor,
-                        ),
+      body: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            StreamBuilder<List<MyTasksRecord>>(
+              stream: queryMyTasksRecord(
+                queryBuilder: (myTasksRecord) => myTasksRecord.orderBy('Time'),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        color: FlutterFlowTheme.primaryColor,
                       ),
-                    );
-                  }
-                  List<MyTasksRecord> columnMyTasksRecordList = snapshot.data;
-                  return Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: List.generate(columnMyTasksRecordList.length,
-                        (columnIndex) {
-                      final columnMyTasksRecord =
-                          columnMyTasksRecordList[columnIndex];
-                      return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                    ),
+                  );
+                }
+                List<MyTasksRecord> columnMyTasksRecordList = snapshot.data;
+                return Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: List.generate(columnMyTasksRecordList.length,
+                      (columnIndex) {
+                    final columnMyTasksRecord =
+                        columnMyTasksRecordList[columnIndex];
+                    return Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      child: InkWell(
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: CompletedTasksFirestoreWidget(),
+                            ),
+                          );
+                        },
                         child: Material(
                           color: Colors.transparent,
                           elevation: 3,
@@ -177,13 +188,13 @@ class _TodofirebaseWidgetState extends State<TodofirebaseWidget> {
                             ),
                           ),
                         ),
-                      );
-                    }),
-                  );
-                },
-              ),
-            ],
-          ),
+                      ),
+                    );
+                  }),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
